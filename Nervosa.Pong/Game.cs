@@ -15,6 +15,7 @@ namespace Nervosa.Pong
         {
         }
 
+
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
         /// This is where it can query for any required services and load any non-graphic
@@ -35,14 +36,23 @@ namespace Nervosa.Pong
             var ent = scene.createEntity("middleLine");
             ent.addComponent(new MiddleLine());
 
-            var playerPaddle = scene.createEntity("playerPaddle");
-            playerPaddle.addComponent(new Paddle(PaddleType.PLAYER));
-
-            var computerPaddle = scene.createEntity("computerPaddle");
-            computerPaddle.addComponent(new Paddle(PaddleType.COMPUTER));
-
             var ball = scene.createEntity("ball");
             ball.addComponent(new Ball());
+
+            var positionY = (Screen.height / 2) - (Paddle.HEIGHT / 2);
+            var playerPaddle = scene.createEntity("playerPaddle", new Vector2(50, positionY));
+            playerPaddle.addComponent(new Paddle());
+            // playerPaddle.addComponent(new PaddleComputerAI(ball.getComponent<Ball>()));
+            playerPaddle.addComponent(new PlayerMovement());
+
+            var computerPaddle = scene.createEntity("computerPaddle", new Vector2(Screen.width - Paddle.WIDTH - 50, positionY));
+            computerPaddle.addComponent(new Paddle());
+            computerPaddle.addComponent(new PaddleComputerAI(ball.getComponent<Ball>()));
+
+            var walls = scene.createEntity("walls");
+            walls.addComponent(new Walls());
+
+            scene.addEntityProcessor(new BallCollisionSystem(new Matcher().all(typeof(Ball))));
 
             Window.ClientSizeChanged += onScreenResized;
 
