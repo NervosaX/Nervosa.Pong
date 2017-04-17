@@ -8,7 +8,7 @@ namespace Nervosa.Pong
         public static float WIDTH = 15;
         public static float HEIGHT = 250;
 
-        public float speed { get { return 300f; } }
+        public float speed { get { return 500f; } }
         public override float width { get { return Paddle.WIDTH; } }
         public override float height { get { return Paddle.HEIGHT; } }
 

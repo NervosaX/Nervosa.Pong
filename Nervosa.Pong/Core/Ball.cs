@@ -6,8 +6,10 @@ namespace Nervosa.Pong
 {
     public class Ball : RenderableComponent, IUpdatable
     {
+        public static float MAX_SPEED = 700f;
+
         public Vector2 velocity;
-        public float speed = 400f;
+        public float speed = 500f;
         public override float width { get { return 20; } }
         public override float height { get { return width; } }
         public BoxCollider collider;

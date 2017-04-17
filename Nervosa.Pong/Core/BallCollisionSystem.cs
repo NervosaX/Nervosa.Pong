@@ -19,9 +19,36 @@ namespace Nervosa.Pong
             if (ball.collider.collidesWithAny(out result))
             {
                 var bounce = result.collider.entity.getComponent<BounceableSurface>();
-                if (bounce != null) {
+                if (bounce != null)
+                {
+                    var newVelocity = ball.velocity;
                     // Calculate a reflection vector and apply it to the ball
-                    ball.velocity = -2 * Vector2.Dot(result.normal, ball.velocity) * result.normal + ball.velocity;
+                    newVelocity = -2 * Vector2.Dot(result.normal, ball.velocity) * result.normal + ball.velocity;
+
+                    ball.velocity = newVelocity;
+
+                    // If a paddle...
+                    var paddle = result.collider.entity.getComponent<Paddle>();
+                    if (paddle != null)
+                    {
+                        var isMinus = ball.velocity.Y < 0;
+                        var distanceFromMiddle = Math.Abs((paddle.height / 2) - Math.Abs(bounce.entity.position.Y - ball.entity.position.Y));
+
+                        ball.velocity.Y = Math.Abs(distanceFromMiddle / (paddle.height / 2));
+
+                        // Don't let the ball become too straight
+                        if (ball.velocity.Y < 0.7f) {
+                            ball.velocity.Y = 0.7f;
+                        }
+
+                        ball.speed = (ball.velocity.Y) * Ball.MAX_SPEED;
+
+                        // Keep it moving in the right direction
+                        if (isMinus)
+                        {
+                            ball.velocity.Y *= -1;
+                        }
+                    }
                 }
             }
         }

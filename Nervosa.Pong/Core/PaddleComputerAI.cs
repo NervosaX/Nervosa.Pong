@@ -17,7 +17,7 @@ namespace Nervosa.Pong
         {
             var paddle = entity.getComponent<Paddle>();
             var vec = Vector2.Zero;
-            vec.Y = paddle.entity.position.Y < ball.entity.position.Y ? 1f : -1f;
+            vec.Y = (paddle.entity.position.Y + Paddle.HEIGHT / 2) < ball.entity.position.Y ? 1f : -1f;
 
             var newPosition = paddle.entity.position + (vec * paddle.speed) * Time.deltaTime;
 
