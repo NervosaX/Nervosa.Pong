@@ -26,6 +26,7 @@ namespace Nervosa.Pong
                     newVelocity = -2 * Vector2.Dot(result.normal, ball.velocity) * result.normal + ball.velocity;
 
                     ball.velocity = newVelocity;
+                    ball.entity.position += (newVelocity * 10);
 
                     // If a paddle...
                     var paddle = result.collider.entity.getComponent<Paddle>();

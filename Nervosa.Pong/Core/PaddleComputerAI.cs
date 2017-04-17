@@ -13,6 +13,12 @@ namespace Nervosa.Pong
             this.ball = ball;
         }
 
+        public override void onAddedToEntity()
+        {
+            var paddle = entity.getComponent<Paddle>();
+            paddle.speed -= 100;
+        }
+
         public void update()
         {
             var paddle = entity.getComponent<Paddle>();
