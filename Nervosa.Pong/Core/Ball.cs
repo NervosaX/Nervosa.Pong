@@ -30,7 +30,7 @@ namespace Nervosa.Pong
 
         public override void render(Graphics graphics, Camera camera)
         {
-            Draw.drawBox(graphics.batcher, entity.position, width, height, this.color);
+            graphics.batcher.drawCircle(entity.position, width / 2, this.color);
         }
     }
 }

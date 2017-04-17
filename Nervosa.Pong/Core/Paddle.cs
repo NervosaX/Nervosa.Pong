@@ -25,7 +25,7 @@ namespace Nervosa.Pong
 
         public override void render(Graphics graphics, Camera camera)
         {
-            Draw.drawBox(graphics.batcher,
+            graphics.batcher.drawHollowRect(
                 this.entity.position,
                 width,
                 height,

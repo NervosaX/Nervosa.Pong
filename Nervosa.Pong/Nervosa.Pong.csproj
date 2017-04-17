@@ -44,7 +44,6 @@
     <Compile Include="Game.cs" />
     <Compile Include="Core\MiddleLine.cs" />
     <Compile Include="Core\Paddle.cs" />
-    <Compile Include="Core\Draw.cs" />
     <Compile Include="Core\PlayerMovement.cs" />
     <Compile Include="Core\Ball.cs" />
     <Compile Include="Core\BallCollisionSystem.cs" />

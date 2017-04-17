@@ -21,7 +21,8 @@ namespace Nervosa.Pong
                 if (num % 2 == 0)
                 {
                     var position = num * lineHeight;
-                    Draw.drawLine(graphics.batcher,
+
+                    graphics.batcher.drawLine(
                         new Vector2(Screen.center.X, position),
                         new Vector2(Screen.center.X, position + lineHeight),
                         Color.Gray);
