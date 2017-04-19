@@ -38,7 +38,8 @@ namespace Nervosa.Pong
                         ball.velocity.Y = Math.Abs(distanceFromMiddle / (paddle.height / 2));
 
                         // Don't let the ball become too straight
-                        if (ball.velocity.Y < 0.7f) {
+                        if (ball.velocity.Y < 0.7f)
+                        {
                             ball.velocity.Y = 0.7f;
                         }
 
@@ -50,6 +51,17 @@ namespace Nervosa.Pong
                             ball.velocity.Y *= -1;
                         }
                     }
+                    return;
+                }
+
+                // If a goal
+                var goal = result.collider.entity.getComponent<Goal>();
+                if (goal != null)
+                {
+                    entity.position = new Vector2(Screen.width / 2, Screen.height / 2);
+                    ball.velocity = Ball.ORIGINAL_VELOCITY;
+                    ball.speed = Ball.ORIGINAL_SPEED;
+                    goal.score++;
                 }
             }
         }
