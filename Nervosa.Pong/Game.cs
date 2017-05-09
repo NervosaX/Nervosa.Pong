@@ -33,7 +33,7 @@ namespace Nervosa.Pong
         void createScene()
         {
             var scene = Scene.createWithDefaultRenderer(Color.Black);
-            var spriteFont = content.Load<SpriteFont>(Content.Basic);
+            var spriteFont = content.Load<SpriteFont>("Basic");
             var font = new NezSpriteFont(spriteFont);
 
             var ent = scene.createEntity("middleLine");
